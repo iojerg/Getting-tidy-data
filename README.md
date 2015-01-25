@@ -20,14 +20,41 @@ b. The resulting data set is store in newdataSet (dim[10299,90]). I have 90 colu
 3.Uses descriptive activity names to name the activities in the data set
 a. Using the function merge() and assigning as key the activity number in both data set (newDataSet and activity_labels).
 b. I name this new variable (column) as "Activity"
-c. It has been store in dataSet_mod
+c. It has been store in dataSet_mod (dim[10299,91])
 
 4.Appropriately labels the data set with descriptive variable names. 
 a. It has been done on orevious steps.
 
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-a. Using the function aggregate(dataSet_mod,byActivity,Subject),FUN=mean) we obtain the result. I store it in a "tidy_data"
-b. As when aggregated the variables defined as factor or character, can not be aggregated, so it will generate a NA value. What I do is to select only the relevant columns
+a. Using the function aggregate(dataSet_mod,byActivity,Subject),FUN=mean) we obtain the result. I store it in "tidy_data_0" (dim[35,93]). Notice that thre is not 180 rows as expected (30subjects x 6 activities), there is only 35 combination of activity and subject as well as many subjects does not do all the activities.
+b. As when aggregated the variables defined as factor or character, can not be aggregated, so it will generate a NA value. What I do is to select only the relevant columns. Aggregate function generates 2 new variables called "Group.1" and "Group.2" which represent Activity and subject. I have 4 additional variables as Activity.number, Activity, Measure.type (test, train) and Subject that takes value Na when aggregating, what I do is to select a sub set with only relevant columns (with values different to Na's).
+c. This final and tidy data set is stored in "tidy_data" (dim[35,89])
+d. The test file is generated from this data set
 
+#dataSet Code Book
 
+01. Activity.number
+    Definition: Indicates the activity number
+    Type: int 
+    Range: 1:6
 
+02. Activity
+    Definition: Activity names
+    Type: Factor
+    Levels: "LAYING","SITTING", "STANDING","WALKING","WALKING_UPSTAIRS","WALKING_DOWNSTAIRS"
+
+03. Measure.type
+    Definition: Whether the activity was labeled as test or train
+    Type: factor
+    Levels: "test","train"
+
+04. Subject
+    Definition: number that identifies the subject of the activity
+    Type: int 
+    Range: 1:30
+
+05 - 564. Measurements
+  Definition: every measurement recorded by the phone with the accelerometer and gyroscope
+  type: numeric
+
+The rest of the data set created will use some of the variables defined in this code book
