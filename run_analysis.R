@@ -80,7 +80,9 @@ dataSet_mod$Subject <- factor(dataSet$Subject) ##Converts Subject as Factor
 
 ## install.packages("reshape2") need to be installed
 
-tidy_data <-aggregate(dataSet_mod, by=list(dataSet_mod$Activity,dataSet_mod$Subject),FUN=mean, na.rm=TRUE)
-write.table(tidy_data,"../tidy_data.txt",row.names=F)
+tidy_data_0 <-aggregate(dataSet_mod, by=list(dataSet_mod$Activity,dataSet_mod$Subject),FUN=mean, na.rm=TRUE)
+tidy_data <- tidy_data_0[,c(1,2,7:dim(tidy_data_0)[2])] ##Select only relevant variables
+colnames(tidy_data)[1:2] <- c("Activity","Subject") ##Name the activity and subject columns
+write.table(tidy_data,"../tidy_data.txt",row.names=F)  ##Generate the .txt file
 
 
