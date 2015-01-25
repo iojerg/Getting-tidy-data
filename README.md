@@ -1,4 +1,4 @@
-## Getting-tidy-data
+### Getting-tidy-data
 Coursera data science - 03 Getting and cleaning data - Course project
 
 First of all I have saved the UCI HAS Dataset folder in my current working directory, so to run the code you should have this folder in your current directory.
